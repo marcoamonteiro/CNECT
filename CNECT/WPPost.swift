@@ -17,8 +17,11 @@ struct WPPost {
     var title: String
     var content: String
     
-    
-    //"At some point" add error handling
+    /**
+     * Construct a new WPPost object from an NSDictionary of data
+     *
+     * - parameter dict: An NSDictionary object containing the following fields: 'ID' (Int), 'post_author' (Int), 'post_title' (String), 'post_content' (String), 'post_author_name' (String), 'featured_image_URL' (String).
+     */
     init?(dict: NSDictionary) {
         guard let dictID = dict.valueForKey("ID") as? Int else {
             return nil
@@ -40,7 +43,7 @@ struct WPPost {
             return nil
         }
         
-        guard let dictPostImage = dict.valueForKey("featured_image_URL") as? String else {
+        guard let dictFeaturedImageURL = dict.valueForKey("featured_image_URL") as? String else {
             return nil
         }
 
@@ -49,7 +52,7 @@ struct WPPost {
         title = dictPostTitle
         content = dictPostContent
         authorName = dictPostAuthorName
-        featuredImageURL = NSURL(string: dictPostImage)!
+        featuredImageURL = NSURL(string: dictFeaturedImageURL)!
         
     }
 }
