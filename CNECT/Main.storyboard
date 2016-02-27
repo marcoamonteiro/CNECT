@@ -760,7 +760,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8rg-F9-4Gi">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8rg-F9-4Gi">
                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="134.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="134.5" id="935-1a-Af9"/>

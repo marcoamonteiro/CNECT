@@ -14,7 +14,7 @@ class ArticleController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var featuredImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var contentView: WKWebView!
+    @IBOutlet weak var contentView: UIWebView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -30,13 +30,15 @@ class ArticleController: UIViewController, UIWebViewDelegate {
         titleLabel.text = articleTitle
         authorLabel.text = articleAuthor
         
-        //contentView.delegate = self
+        contentView.delegate = self
         contentView.scrollView.scrollEnabled = false
+        contentView.userInteractionEnabled = true
         contentView.loadHTMLString(articleContent, baseURL: nil)
 
 
         
         featuredImageView.image = articleFeaturedImage
+        featuredImageView.frame = CGRect(x: featuredImageView.frame.minX, y: featuredImageView.frame.minY, width: scrollView.frame.width, height: featuredImageView.frame.height)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,18 +47,18 @@ class ArticleController: UIViewController, UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        //if let heightString = webView.stringByEvaluatingJavaScriptFromString("document.height"),
-          //  height = Int(heightString) {
+        if let heightString = webView.stringByEvaluatingJavaScriptFromString("document.height"),
+            height = Int(heightString) {
                 
-            scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 400 + 1000)
+            scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 400 + CGFloat(height))
             
-            contentView.frame = CGRect(x: contentView.frame.minX, y: 200, width: contentView.frame.width, height: 1000)
+            contentView.frame = CGRect(x: contentView.frame.minX, y: 200, width: contentView.frame.width, height: CGFloat(height))
 
 
                 
                 print(contentView.frame)
                 print(scrollView.contentSize)
-       // }
+        }
     }
 
     /*
