@@ -52,7 +52,6 @@
 		A9D6F9DD1C81999C00ADDD89 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		A9D6F9DE1C81999C00ADDD89 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A9D6F9E71C81B58400ADDD89 /* Article.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Article.css; sourceTree = "<group>"; };
-		A9D6F9E91C81B80C00ADDD89 /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +129,6 @@
 		A9D6F9E61C81B56D00ADDD89 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A9D6F9E91C81B80C00ADDD89 /* SF-UI-Text-Regular.otf */,
 				A9D6F9E71C81B58400ADDD89 /* Article.css */,
 			);
 			name = Resources;
