@@ -27,16 +27,12 @@ class ArticlesTableViewController: UITableViewController {
         
         WP(site: "http://cnect.co").getPosts { posts in
             self.posts = posts
-            self.tableView.reloadData()
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                self.tableView.reloadData()
+            }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
 
     // MARK: - Table view data source
 
