@@ -18,9 +18,7 @@
 		A9D6F9CC1C81996400ADDD89 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9CA1C81996400ADDD89 /* SWRevealViewController.m */; };
 		A9D6F9D41C81999200ADDD89 /* ArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9CE1C81999200ADDD89 /* ArticleController.swift */; };
 		A9D6F9D51C81999200ADDD89 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9CF1C81999200ADDD89 /* ArticleTableViewCell.swift */; };
-		A9D6F9D61C81999200ADDD89 /* headerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9D01C81999200ADDD89 /* headerData.swift */; };
 		A9D6F9D71C81999200ADDD89 /* ArticlesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9D11C81999200ADDD89 /* ArticlesTableViewController.swift */; };
-		A9D6F9D81C81999200ADDD89 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = A9D6F9D21C81999200ADDD89 /* background1.png */; };
 		A9D6F9D91C81999200ADDD89 /* UniversitesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9D31C81999200ADDD89 /* UniversitesTableViewController.swift */; };
 		A9D6F9E01C81999C00ADDD89 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9DA1C81999C00ADDD89 /* MenuController.swift */; };
 		A9D6F9E11C81999C00ADDD89 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9DB1C81999C00ADDD89 /* AboutViewController.swift */; };
@@ -45,9 +43,7 @@
 		A9D6F9CB1C81996400ADDD89 /* SidebarMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SidebarMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		A9D6F9CE1C81999200ADDD89 /* ArticleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleController.swift; sourceTree = "<group>"; };
 		A9D6F9CF1C81999200ADDD89 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
-		A9D6F9D01C81999200ADDD89 /* headerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = headerData.swift; sourceTree = "<group>"; };
 		A9D6F9D11C81999200ADDD89 /* ArticlesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesTableViewController.swift; sourceTree = "<group>"; };
-		A9D6F9D21C81999200ADDD89 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
 		A9D6F9D31C81999200ADDD89 /* UniversitesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitesTableViewController.swift; sourceTree = "<group>"; };
 		A9D6F9DA1C81999C00ADDD89 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		A9D6F9DB1C81999C00ADDD89 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -93,9 +89,7 @@
 				A9D6F9B51C81983E00ADDD89 /* Assets.xcassets */,
 				A9D6F9CE1C81999200ADDD89 /* ArticleController.swift */,
 				A9D6F9CF1C81999200ADDD89 /* ArticleTableViewCell.swift */,
-				A9D6F9D01C81999200ADDD89 /* headerData.swift */,
 				A9D6F9D11C81999200ADDD89 /* ArticlesTableViewController.swift */,
-				A9D6F9D21C81999200ADDD89 /* background1.png */,
 				A9D6F9D31C81999200ADDD89 /* UniversitesTableViewController.swift */,
 				A9D6F9DA1C81999C00ADDD89 /* MenuController.swift */,
 				A9D6F9DB1C81999C00ADDD89 /* AboutViewController.swift */,
@@ -190,7 +184,6 @@
 				A9D6F9B91C81983E00ADDD89 /* LaunchScreen.storyboard in Resources */,
 				A9D6F9B61C81983E00ADDD89 /* Assets.xcassets in Resources */,
 				A9D6F9C11C8198AC00ADDD89 /* Main.storyboard in Resources */,
-				A9D6F9D81C81999200ADDD89 /* background1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +198,6 @@
 				A9D6F9C61C8198FF00ADDD89 /* WPCategory.swift in Sources */,
 				A9D6F9E31C81999C00ADDD89 /* NewsTableViewCell.swift in Sources */,
 				A9D6F9C51C8198FF00ADDD89 /* WPPost.swift in Sources */,
-				A9D6F9D61C81999200ADDD89 /* headerData.swift in Sources */,
 				A9D6F9E01C81999C00ADDD89 /* MenuController.swift in Sources */,
 				A9D6F9B11C81983E00ADDD89 /* ViewController.swift in Sources */,
 				A9D6F9C71C8198FF00ADDD89 /* WP.swift in Sources */,
@@ -360,6 +352,7 @@
 				A9D6F9BF1C81983E00ADDD89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
