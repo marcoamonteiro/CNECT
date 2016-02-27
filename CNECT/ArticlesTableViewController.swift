@@ -130,7 +130,7 @@ class ArticlesTableViewController: UITableViewController {
                 if let indexPath = tableView.indexPathForCell(cell) {
                     articleController.articleTitle = posts[indexPath.row].title
                     articleController.articleAuthor = posts[indexPath.row].authorName
-                    articleController.articleFeaturedImage = posts[indexPath.row].featuredImage
+                    articleController.articleFeaturedImageURL = posts[indexPath.row].featuredImageURL
                     articleController.articleContent = posts[indexPath.row].content
                 }
             }

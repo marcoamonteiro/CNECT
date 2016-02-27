@@ -11,32 +11,44 @@ import WebKit
 
 class ArticleController: UIViewController, UIWebViewDelegate {
     
-    @IBOutlet weak var featuredImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var contentView: UIWebView!
+    static var articleCSS: String?
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIWebView!
     
     var articleTitle = ""
     var articleAuthor = ""
     var articleContent = "<b>test</b>"
-    var articleFeaturedImage: UIImage?
+    var articleFeaturedImageURL: NSURL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        titleLabel.text = articleTitle
-        authorLabel.text = articleAuthor
         
-        contentView.delegate = self
-        contentView.scrollView.scrollEnabled = false
-        contentView.userInteractionEnabled = true
+        /*
+        let statusBlur = UIBlurEffect(style: .ExtraLight)
+        let statusEffect = UIVisualEffectView(effect: statusBlur)
+        statusEffect.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 20)
+        
+        view.addSubview(statusEffect)*/
+        
+        /*
+        let statusFade = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        statusFade.backgroundColor = UIColor.whiteColor()
+        
+        let gradientMask = CAGradientLayer()
+        gradientMask.frame = statusFade.bounds
+        
+        gradientMask.colors = [UIColor.whiteColor().CGColor, UIColor.clearColor().CGColor]
+        gradientMask.startPoint = CGPoint(x: 0.0, y: 0.25)
+        gradientMask.endPoint = CGPoint(x: 0.0, y: 1.0)
+        
+        statusFade.layer.mask = gradientMask
+        view.addSubview(statusFade)
+*/
+        
+        formatHTML()
         contentView.loadHTMLString(articleContent, baseURL: nil)
-        
-        featuredImageView.image = articleFeaturedImage
-        featuredImageView.frame = CGRect(x: featuredImageView.frame.minX, y: featuredImageView.frame.minY, width: scrollView.frame.width, height: featuredImageView.frame.height)
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,18 +56,25 @@ class ArticleController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        if let heightString = webView.stringByEvaluatingJavaScriptFromString("document.height"),
-            height = Int(heightString) {
-                
-            scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 400 + CGFloat(height))
-            
-            contentView.frame = CGRect(x: contentView.frame.minX, y: 200, width: contentView.frame.width, height: CGFloat(height))
+    private func formatHTML() {
+        
+        articleContent = "<div id='cnect-app-article-content'>\(articleContent)</div>"
+        
+        if ArticleController.articleCSS == nil {
+            do {
+                ArticleController.articleCSS = try String(contentsOfURL: NSBundle.mainBundle().URLForResource("Article", withExtension: "css")!)
+            } catch {
+                ArticleController.articleCSS = ""
+            }
+        }
 
-
-                
-                print(contentView.frame)
-                print(scrollView.contentSize)
+        articleContent = "<h1 id='cnect-app-article-title'>\(articleTitle)</h1><h2 id='cnect-app-article-author'><span class='by'>By</span> \(articleAuthor)</h2>" + articleContent
+        if let imageURL = articleFeaturedImageURL {
+            articleContent = "<img id='cnect-app-featured-image' src='\(imageURL.absoluteString)' />" + articleContent
+        }
+        
+        if let articleCSS = ArticleController.articleCSS {
+            articleContent = "<style type=\"text/css\">\(articleCSS)</style>" + articleContent
         }
     }
 
