@@ -34,8 +34,6 @@ class ArticleController: UIViewController, UIWebViewDelegate {
         contentView.scrollView.scrollEnabled = false
         contentView.userInteractionEnabled = true
         contentView.loadHTMLString(articleContent, baseURL: nil)
-
-
         
         featuredImageView.image = articleFeaturedImage
         featuredImageView.frame = CGRect(x: featuredImageView.frame.minX, y: featuredImageView.frame.minY, width: scrollView.frame.width, height: featuredImageView.frame.height)
