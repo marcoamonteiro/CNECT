@@ -9,12 +9,16 @@
 import Foundation
 
 struct WPCategory {
-    var ID: Int
-    var name: String
-    var count: Int
-    var description: String
-    var slug: String
-    var parentID: Int?
+    let ID: Int
+    let name: String
+    let count: Int
+    let tagline: String
+    let description: String
+    let slug: String
+    let parentID: Int?
+    
+    let featuredImageURL: NSURL
+    var featuredImage: UIImage?
     
     //"At some point" add error handling
     init?(dict: NSDictionary) {
@@ -42,12 +46,46 @@ struct WPCategory {
             return nil
         }
         
+        do {
+            let taglineRegex = try NSRegularExpression(pattern: "<h5 class=\"caption\">(.*)</h5>", options: [])
+            let matches = taglineRegex.matchesInString(dictDescription, options: [], range: NSRange(location: 0, length: dictDescription.characters.count))
+            
+            // We only care about the first (hopefully there is only one at all)
+            if let match = matches.first {
+                
+                // Get the subcapture range.
+                let innerRange = match.rangeAtIndex(1)
+                tagline = dictDescription.substringWithRange(dictDescription.rangeFrom(innerRange))
+            } else {
+                tagline = ""
+            }
+        } catch {
+            tagline = ""
+        }
+        
+        var descriptionBuilder = ""
+        
+        do {
+            let descriptionRegex = try NSRegularExpression(pattern: "<h5 class=\"subcaption\">(.*)</h5>", options: [.DotMatchesLineSeparators])
+            let matches = descriptionRegex.matchesInString(dictDescription, options: [], range: NSRange(location: 0, length: dictDescription.characters.count))
+            
+            // Loop over all matches to account for Ben's unelegance.
+            for match in matches {
+                // Get the subcapture range.
+                let innerRange = match.rangeAtIndex(1)
+                let innerMatch = dictDescription.substringWithRange(dictDescription.rangeFrom(innerRange))
+                print(innerMatch)
+                descriptionBuilder += innerMatch
+            }
+        } catch {}
+        
         name = dictName
         count = dictCount
-        description = dictDescription
         slug = dictSlug
+        description = descriptionBuilder
         parentID = dictParent != 0 ? dictParent : nil
         ID = dictID
         
+        featuredImageURL = NSURL(string: "http://cnect.co/wp-content/uploads/2016/01/\(name).jpg")!
     }
 }

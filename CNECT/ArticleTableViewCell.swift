@@ -26,7 +26,7 @@ class ArticleTableViewCell: UITableViewCell {
         
         gradientLayer.colors = [UIColor(white: 1.0, alpha: 0.0).CGColor, UIColor(white: 1.0, alpha: 0.6).CGColor]
         gradientLayer.startPoint = CGPointMake(1.0, 0.0)
-        gradientLayer.endPoint = CGPointMake(0.0, 1.0)
+        gradientLayer.endPoint = CGPointMake(0.0, 0.0)
         darkView.layer.mask = gradientLayer
         
         featuredImageView.addSubview(darkView)

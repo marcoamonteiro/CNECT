@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02647E501C826124000CA7F9 /* Alternate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02647E4F1C826124000CA7F9 /* Alternate.storyboard */; };
+		02647E541C82640E000CA7F9 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02647E531C82640E000CA7F9 /* UIColor.swift */; };
+		02647E571C826728000CA7F9 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02647E561C826728000CA7F9 /* CategoriesTableViewController.swift */; };
+		02647E5A1C826772000CA7F9 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02647E591C826772000CA7F9 /* CategoryTableViewCell.swift */; };
+		02647E5C1C826D29000CA7F9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02647E5B1C826D29000CA7F9 /* String.swift */; };
+		02647E5E1C827573000CA7F9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02647E5D1C827573000CA7F9 /* QuartzCore.framework */; };
 		A9D6F9AF1C81983E00ADDD89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9AE1C81983E00ADDD89 /* AppDelegate.swift */; };
-		A9D6F9B11C81983E00ADDD89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9B01C81983E00ADDD89 /* ViewController.swift */; };
 		A9D6F9B61C81983E00ADDD89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9D6F9B51C81983E00ADDD89 /* Assets.xcassets */; };
 		A9D6F9B91C81983E00ADDD89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9D6F9B71C81983E00ADDD89 /* LaunchScreen.storyboard */; };
 		A9D6F9C11C8198AC00ADDD89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9D6F9C01C8198AC00ADDD89 /* Main.storyboard */; };
@@ -29,9 +34,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02647E4F1C826124000CA7F9 /* Alternate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alternate.storyboard; sourceTree = "<group>"; };
+		02647E531C82640E000CA7F9 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		02647E561C826728000CA7F9 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		02647E591C826772000CA7F9 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		02647E5B1C826D29000CA7F9 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		02647E5D1C827573000CA7F9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A9D6F9AB1C81983E00ADDD89 /* CNECT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNECT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D6F9AE1C81983E00ADDD89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A9D6F9B01C81983E00ADDD89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A9D6F9B51C81983E00ADDD89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9D6F9B81C81983E00ADDD89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9D6F9BA1C81983E00ADDD89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,15 +69,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02647E5E1C827573000CA7F9 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02647E521C826401000CA7F9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				02647E531C82640E000CA7F9 /* UIColor.swift */,
+				02647E5B1C826D29000CA7F9 /* String.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		02647E551C826695000CA7F9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				02647E561C826728000CA7F9 /* CategoriesTableViewController.swift */,
+				A9D6F9D11C81999200ADDD89 /* ArticlesTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		02647E581C82675F000CA7F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02647E4F1C826124000CA7F9 /* Alternate.storyboard */,
+				02647E591C826772000CA7F9 /* CategoryTableViewCell.swift */,
+				A9D6F9CF1C81999200ADDD89 /* ArticleTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		A9D6F9A21C81983D00ADDD89 = {
 			isa = PBXGroup;
 			children = (
+				02647E5D1C827573000CA7F9 /* QuartzCore.framework */,
 				A9D6F9AD1C81983E00ADDD89 /* CNECT */,
 				A9D6F9AC1C81983E00ADDD89 /* Products */,
 			);
@@ -85,14 +125,13 @@
 			isa = PBXGroup;
 			children = (
 				A9D6F9AE1C81983E00ADDD89 /* AppDelegate.swift */,
+				02647E581C82675F000CA7F9 /* Views */,
+				02647E551C826695000CA7F9 /* Controllers */,
+				02647E521C826401000CA7F9 /* Extensions */,
 				A9D6F9E61C81B56D00ADDD89 /* Resources */,
-				A9D6F9B01C81983E00ADDD89 /* ViewController.swift */,
-				A9D6F9C01C8198AC00ADDD89 /* Main.storyboard */,
 				A9D6F9C81C81990600ADDD89 /* WP API */,
 				A9D6F9B51C81983E00ADDD89 /* Assets.xcassets */,
 				A9D6F9CE1C81999200ADDD89 /* ArticleController.swift */,
-				A9D6F9CF1C81999200ADDD89 /* ArticleTableViewCell.swift */,
-				A9D6F9D11C81999200ADDD89 /* ArticlesTableViewController.swift */,
 				A9D6F9D31C81999200ADDD89 /* UniversitesTableViewController.swift */,
 				A9D6F9DA1C81999C00ADDD89 /* MenuController.swift */,
 				A9D6F9DB1C81999C00ADDD89 /* AboutViewController.swift */,
@@ -101,6 +140,7 @@
 				A9D6F9DE1C81999C00ADDD89 /* MapViewController.swift */,
 				A9D6F9CD1C81996E00ADDD89 /* SidebarMenu */,
 				A9D6F9B71C81983E00ADDD89 /* LaunchScreen.storyboard */,
+				A9D6F9C01C8198AC00ADDD89 /* Main.storyboard */,
 				A9D6F9BA1C81983E00ADDD89 /* Info.plist */,
 			);
 			path = CNECT;
@@ -196,6 +236,7 @@
 				A9D6F9B91C81983E00ADDD89 /* LaunchScreen.storyboard in Resources */,
 				A9D6F9B61C81983E00ADDD89 /* Assets.xcassets in Resources */,
 				A9D6F9E81C81B58400ADDD89 /* Article.css in Resources */,
+				02647E501C826124000CA7F9 /* Alternate.storyboard in Resources */,
 				A9D6F9C11C8198AC00ADDD89 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,16 +253,19 @@
 				A9D6F9E31C81999C00ADDD89 /* NewsTableViewCell.swift in Sources */,
 				A9D6F9C51C8198FF00ADDD89 /* WPPost.swift in Sources */,
 				A9D6F9E01C81999C00ADDD89 /* MenuController.swift in Sources */,
-				A9D6F9B11C81983E00ADDD89 /* ViewController.swift in Sources */,
+				02647E541C82640E000CA7F9 /* UIColor.swift in Sources */,
 				A9D6F9C71C8198FF00ADDD89 /* WP.swift in Sources */,
 				A9D6F9D51C81999200ADDD89 /* ArticleTableViewCell.swift in Sources */,
 				A9D6F9D91C81999200ADDD89 /* UniversitesTableViewController.swift in Sources */,
 				A9D6F9AF1C81983E00ADDD89 /* AppDelegate.swift in Sources */,
+				02647E5C1C826D29000CA7F9 /* String.swift in Sources */,
 				A9D6F9CC1C81996400ADDD89 /* SWRevealViewController.m in Sources */,
 				A9D6F9E11C81999C00ADDD89 /* AboutViewController.swift in Sources */,
 				A9D6F9E21C81999C00ADDD89 /* NewsTableViewController.swift in Sources */,
 				A9D6F9D41C81999200ADDD89 /* ArticleController.swift in Sources */,
 				A9D6F9E41C81999C00ADDD89 /* MapViewController.swift in Sources */,
+				02647E571C826728000CA7F9 /* CategoriesTableViewController.swift in Sources */,
+				02647E5A1C826772000CA7F9 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

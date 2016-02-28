@@ -8,11 +8,13 @@
 
 import UIKit
 
+// A global instance of the Wordpress connection.
+let cnect = WP(site: "http://cnect.co")
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
