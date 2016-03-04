@@ -16,27 +16,27 @@ class CategoriesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let indicator = addActivityIndicatorView()
         
         // Fetch the categories from the Wordpress connection.
-        cnect.getCategories { categories in
+        cnect.categories { categories in
             if let categories = categories {
+                // Reload the table view.
+                indicator.removeFromSuperview()
                 self.categories.appendContentsOf(categories)
-            } else {
-                self.categories.removeAll()
-            }
-            
-            // Reload the table view, performing UI updates on the main thread.
-            NSOperationQueue.mainQueue().addOperationWithBlock {
                 self.tableView.reloadData()
             }
         }
         
+        // Hide the bottom border on navigation bar.
+        navigationController?.navigationBar.borderView?.hidden = true
+        
+        // Switch to top stories by default.
+        if let topStories = storyboard?.instantiateViewControllerWithIdentifier("ArticlesTableViewController") as? ArticlesTableViewController {
+            topStories.category = nil
+            navigationController?.pushViewController(topStories, animated: false)
+        }
     }
 
     // MARK: - Table view data source
@@ -44,38 +44,42 @@ class CategoriesTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 18))
+        
+        view.backgroundColor = UIColor.whiteColor()
+        
+        return view
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return 1 + categories.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath)
         
+        let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath)
         guard let categoryCell = cell as? CategoryTableViewCell else {
             return cell
         }
-
-        // Configure the cell...
-        categoryCell.nameLabel.text = categories[indexPath.row].name + " »"
-        categoryCell.taglineLabel.text = categories[indexPath.row].tagline.uppercaseString
-        // categoryCell.descriptionLabel.text = categories[indexPath.row].description
-        categoryCell.descriptionLabel.text = ""
         
-        // Cached loading of images.
-        if let image = self.categories[indexPath.row].featuredImage {
-            categoryCell.featuredImageView.image = image
-        } else {
-            imageQueue.addOperationWithBlock {
-                if let data = NSData(contentsOfURL: self.categories[indexPath.row].featuredImageURL) {
-                    if let image = UIImage(data: data) {
-                        self.categories[indexPath.row].featuredImage = image
-                        NSOperationQueue.mainQueue().addOperationWithBlock {
-                            categoryCell.featuredImageView.image = image
-                        }
-                    }
-                }
-            }
+        // Take the early path out if this is the default "Top Stories" section.
+        if indexPath.row == 0 {
+            categoryCell.featuredImageView?.image = UIImage(named: "TopStories")
+            categoryCell.titleLabel?.text = "Top Stories"
+            return categoryCell
+        }
+        
+        let index = indexPath.row - 1
+        let category = categories[index]
+        
+        categoryCell.titleLabel?.text = category.title
+        categoryCell.imageView?.image = nil
+        
+        // Fetch and cache the category image.
+        category.featuredImage { image in
+            categoryCell.featuredImageView?.image = image
         }
 
         return categoryCell
@@ -116,14 +120,26 @@ class CategoriesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "SectionArticlesSegue",
+            let articlesController = segue.destinationViewController as? ArticlesTableViewController,
+            senderCell = sender as? UITableViewCell,
+            indexPath = tableView.indexPathForCell(senderCell) {
+                
+                // Special case for "Top Stories"
+                if indexPath.row == 0 {
+                    articlesController.category = nil
+                } else {
+                    articlesController.category = categories[indexPath.row - 1]
+                }
+                
+        }
     }
-    */
+
 
 }

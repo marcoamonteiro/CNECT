@@ -10,75 +10,106 @@ import UIKit
 
 class ArticlesTableViewController: UITableViewController {
     
-    var clickedFlag : Bool = false;
-    
-    var posts: [WPPost]!
-    
+    var posts = [WPPost]()
     let imageQueue = NSOperationQueue()
+    
+    var category: WPCategory?
+    
+    var selectedRow: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        WP(site: "http://cnect.co").getPosts { posts in
-            self.posts = posts
-            
-            NSOperationQueue.mainQueue().addOperationWithBlock {
+        let indicator = addActivityIndicatorView()
+        
+        cnect.posts(inCategoryID: category?.ID) { posts in
+            if let posts = posts {
+                // Reload the table view
+                indicator.removeFromSuperview()
+                self.posts.appendContentsOf(posts)
                 self.tableView.reloadData()
             }
         }
+        
+        // Navigation item
+        navigationItem.title = category?.title ?? "Top Stories"
+        
+        // Auto Layout cell height
+        //tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.estimatedRowHeight = 150
+        
+        // Add a custom back button to get back to Sections
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "MenuButton"), style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
+        
+        // After coming back from an article, the highlight should still be there.
+        clearsSelectionOnViewWillAppear = false
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return posts.isEmpty ? 0 : 1
     }
-
+    
+    // A small margin at the top.
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8
+    }
+    
+    // No margin at the bottom (built in to cells).
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if posts == nil {
-            return 0
-        }
-        
         return posts.count
     }
-
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ArticleCell", forIndexPath: indexPath) as! ArticleTableViewCell
-       // cell.selectionStyle = UITableViewCellSelectionStyleNone
-        
-        cell.selectionStyle = .None;
-        cell.titleLabel.text = posts[indexPath.row].title
-        cell.authorLabel.text = posts[indexPath.row].authorName
-        
-        if let image = self.posts[indexPath.row].featuredImage {
-            cell.featuredImageView.image = image
-        } else {
-            imageQueue.addOperationWithBlock {
-                if let data = NSData(contentsOfURL: self.posts[indexPath.row].featuredImageURL) {
-                    if let image = UIImage(data: data) {
-                        self.posts[indexPath.row].featuredImage = image
-                        NSOperationQueue.mainQueue().addOperationWithBlock {
-                            cell.featuredImageView.image = image
-                        }
-                    }
-                }
-            }
-        }
-
-        // Configure the cell...
-
-        return cell
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return selectedRow == indexPath.row ? 400 : 150
     }
     
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let index = indexPath.row
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("ArticleCell", forIndexPath: indexPath)
+        
+        guard let articleCell = cell as? ArticleTableViewCell else {
+            return cell
+        }
+        
+        let post = posts[index]
+        let category = cnect.categoryWithID(post.categoryID)
+        
+        articleCell.categoryLabel?.text = category?.title
+        articleCell.titleLabel?.text = post.title
+        articleCell.featuredImageView?.image = nil
+        // articleCell.excerptLabel?.text = post.excerpt
+        
+        post.featuredImage { image in
+            articleCell.featuredImageView?.image = image
+        }
+        
+        articleCell.adjustConstraintsForSelected(cell.selected)
+
+        return articleCell
+    }
+    
+    
+    // Recalculate autolayout height.
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedRow = nil
+    }
+    
+    // Recalculate autolayout height.
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.beginUpdates()
+        selectedRow = indexPath.row
+        tableView.endUpdates()
+        
+        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

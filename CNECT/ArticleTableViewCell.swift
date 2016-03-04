@@ -9,46 +9,102 @@
 import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var featuredImageView: UIImageView!
-    @IBOutlet weak var authorLabel: UILabel!
     
+    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var categoryLabel: UILabel?
+    @IBOutlet weak var featuredImageView: UIImageView?
+    @IBOutlet weak var excerptLabel: UILabel?
+    
+    @IBOutlet weak var darkenView: UIView?
+    @IBOutlet weak var blurView: UIVisualEffectView?
+    
+    
+    @IBOutlet weak var topMargin: NSLayoutConstraint?
+    @IBOutlet weak var bottomMargin: NSLayoutConstraint?
+    @IBOutlet weak var fixedFromTop: NSLayoutConstraint?
+    @IBOutlet weak var titleVerticallyCentered: NSLayoutConstraint?
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-        let darkView = UIView(frame: featuredImageView.bounds)
-        darkView.backgroundColor = UIColor.blackColor()
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = darkView.bounds
-        
-        gradientLayer.colors = [UIColor(white: 1.0, alpha: 0.0).CGColor, UIColor(white: 1.0, alpha: 0.6).CGColor]
-        gradientLayer.startPoint = CGPointMake(1.0, 0.0)
-        gradientLayer.endPoint = CGPointMake(0.0, 0.0)
-        darkView.layer.mask = gradientLayer
-        
-        featuredImageView.addSubview(darkView)
+        // Add drop shadows to labels for readability.
+        titleLabel?.addDropShadow()
+        categoryLabel?.addDropShadow()
     }
-
-//    override func setSelected(selected: Bool, animated: Bool) {
-//        if selected {
-//            filter.backgroundColor = UIColor.blackColor()
-//            filter.alpha = 0.8
-//        }
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-//    
-//    override func setHighlighted(highlighted: Bool, animated: Bool) {
-//        if highlighted {
-//            filter.backgroundColor = UIColor.blackColor()
-//            filter.alpha = 0.8
-//        }
-//
-//        super.setHighlighted(highlighted, animated: animated)
-//    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: false)
+        
+        // Manipulate drop shadows.
+        if selected {
+            titleLabel?.removeDropShadow()
+            categoryLabel?.removeDropShadow()
+        } else {
+            titleLabel?.addDropShadow()
+            categoryLabel?.addDropShadow()
+        }
+        
+        UIView.animateWithDuration(0.25) {
+            // Switch between darken filter and blur effect.
+            if selected {
+                self.featuredImageView?.alpha = 1.0
+                self.blurView?.alpha = 1
+                self.darkenView?.alpha = 0
+                self.excerptLabel?.alpha = 1
+                
+                self.titleLabel?.textColor = UIColor.blackColor()
+                self.categoryLabel?.textColor = UIColor.blackColor()
+            } else {
+                self.featuredImageView?.alpha = 0.6
+                self.blurView?.alpha = 0
+                self.darkenView?.alpha = 0.5
+                self.excerptLabel?.alpha = 0
+                
+                self.titleLabel?.textColor = UIColor.whiteColor()
+                self.categoryLabel?.textColor = UIColor.whiteColor()
+            }
+            
+            // Propagate constraint updates.
+            self.adjustConstraintsForSelected(selected)
+            self.contentView.setNeedsUpdateConstraints()
+            self.contentView.layoutIfNeeded()
+        }
+    }
+    
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        
+        if selected {
+            if highlighted {
+                darkenView?.alpha = 0.2
+            } else {
+                darkenView?.alpha = 0.0
+            }
+        } else {
+            if highlighted {
+                darkenView?.alpha = 0.3
+            } else {
+                darkenView?.alpha = 0.5
+            }
+        }
+    }
+    
+    func adjustConstraintsForSelected(selected: Bool) {
+        if selected {
+            topMargin?.constant = 8
+            bottomMargin?.constant = 16
+            
+            // Release restrictions to allow to expand.
+            self.fixedFromTop?.active = true
+            self.titleVerticallyCentered?.active = false
+        } else {
+            topMargin?.constant = 0
+            bottomMargin?.constant = 8
+            
+            // Engage constraints to homogonize height.
+            self.fixedFromTop?.active = false
+            self.titleVerticallyCentered?.active = true
+        }
+    }
 
 }
