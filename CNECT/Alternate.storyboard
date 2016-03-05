@@ -7,7 +7,7 @@
         <!--CNECT-->
         <scene sceneID="R6d-4b-U8W">
             <objects>
-                <tableViewController id="5Cb-uh-zgQ" customClass="CategoriesTableViewController" customModule="CNECT" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="5Cb-uh-zgQ" customClass="MenuController" customModule="CNECT" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="52" sectionHeaderHeight="18" sectionFooterHeight="18" id="Yp2-4A-Nc3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,13 +106,18 @@
         <scene sceneID="GCr-1w-fIz">
             <objects>
                 <tableViewController storyboardIdentifier="ArticlesTableViewController" id="cPg-4m-tZR" customClass="ArticlesTableViewController" customModule="CNECT" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="400" sectionHeaderHeight="18" sectionFooterHeight="18" id="rdd-od-JZE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="400" sectionHeaderHeight="28" sectionFooterHeight="28" id="rdd-od-JZE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="lyk-UN-ABq">
+                            <rect key="frame" x="0.0" y="64" width="600" height="8"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArticleCell" id="2Ar-7B-5G3" customClass="ArticleTableViewCell" customModule="CNECT" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="400"/>
+                                <rect key="frame" x="0.0" y="100" width="600" height="400"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ar-7B-5G3" id="unG-XH-qTv">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
@@ -124,10 +129,6 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Upz-Lh-mkK">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="392"/>
                                                 </imageView>
-                                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNF-AA-7fL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="392"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aee-ZK-rit">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="392"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vVb-mN-fTH">
@@ -136,23 +137,30 @@
                                                     </view>
                                                     <blurEffect style="extraLight"/>
                                                 </visualEffectView>
+                                                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNF-AA-7fL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="392"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="65S-0Y-xcU">
                                                     <rect key="frame" x="15" y="15" width="570" height="52"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dr-K7-sKJ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="570" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="570" height="20"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="A" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QPF-FH-Sht">
-                                                            <rect key="frame" x="0.0" y="19" width="570" height="32.5"/>
+                                                            <rect key="frame" x="0.0" y="20" width="570" height="33"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="999" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-G9-tRl">
-                                                    <rect key="frame" x="15" y="82" width="570" height="61.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-G9-tRl">
+                                                    <rect key="frame" x="15" y="82" width="570" height="79.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="uLJ-Z9-UPK"/>
+                                                    </constraints>
                                                     <string key="text">What is truly the value of joining an accelerator program? Huge names like Y Combinator, TechStars, and AngelPad beckon to dreamers, promising growth, mentorship, and an opportunity to get some mind-blowing figures as funding.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -164,14 +172,11 @@
                                                     <state key="normal" image="ForwardButton">
                                                         <color key="titleColor" red="0.019607843140000001" green="0.36078431370000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <connections>
-                                                        <segue destination="5tV-hq-aOc" kind="show" id="Ai2-PR-ATg"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ly-7T-Iwf">
-                                                    <rect key="frame" x="485" y="350" width="79" height="32"/>
+                                                    <rect key="frame" x="418" y="350" width="146" height="32"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <state key="normal" title="Read More"/>
+                                                    <state key="normal" title="Read the Full Article"/>
                                                     <connections>
                                                         <segue destination="5tV-hq-aOc" kind="show" id="nRv-WC-Dad"/>
                                                     </connections>
@@ -199,7 +204,7 @@
                                                 <constraint firstItem="Upz-Lh-mkK" firstAttribute="leading" secondItem="7WC-4g-oA9" secondAttribute="leading" id="oXk-EL-P9x"/>
                                                 <constraint firstItem="KNF-AA-7fL" firstAttribute="bottom" secondItem="Upz-Lh-mkK" secondAttribute="bottom" id="qkd-Gw-xwf"/>
                                                 <constraint firstItem="XY1-G9-tRl" firstAttribute="top" secondItem="65S-0Y-xcU" secondAttribute="bottom" constant="15" id="swN-EN-dxd"/>
-                                                <constraint firstAttribute="bottom" secondItem="INe-5P-4Nc" secondAttribute="bottom" priority="750" constant="15" id="vyh-Xf-Fyc"/>
+                                                <constraint firstAttribute="bottom" secondItem="INe-5P-4Nc" secondAttribute="bottom" priority="999" constant="15" id="vyh-Xf-Fyc"/>
                                                 <constraint firstItem="65S-0Y-xcU" firstAttribute="centerY" secondItem="7WC-4g-oA9" secondAttribute="centerY" id="xVD-wc-v58"/>
                                                 <constraint firstItem="Aee-ZK-rit" firstAttribute="bottom" secondItem="Upz-Lh-mkK" secondAttribute="bottom" id="yGA-Wn-jan"/>
                                                 <constraint firstItem="Upz-Lh-mkK" firstAttribute="top" secondItem="7WC-4g-oA9" secondAttribute="top" id="zbu-jE-Rkm"/>
@@ -243,7 +248,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCK-Ze-7TX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="-117"/>
+            <point key="canvasLocation" x="819" y="-117"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="1eb-vJ-q7h">
@@ -284,8 +289,5 @@
         <image name="DisclosureIndicator" width="8" height="13"/>
         <image name="ForwardButton" width="13" height="22"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Ai2-PR-ATg"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.019607843140000001" green="0.36078431370000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

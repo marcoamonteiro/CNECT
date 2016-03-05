@@ -1,19 +1,17 @@
 //
-//  WPCategory.swift
+//  WPTag.swift
 //  cnect
 //
-//  Created by Marco Monteiro on 2/21/16.
+//  Created by Tobin Bell on 3/4/16.
 //  Copyright © 2016 Marco Monteiro. All rights reserved.
 //
 
 import Foundation
 
-class WPCategory: WPObject {
+class WPTag: WPObject {
     let ID: Int
     let title: String
-    let subtitle: String
-    let tagline: NSAttributedString
-    let parentID: Int?
+    let description: String
     let size: Int
     
     let featuredImageURL: NSURL
@@ -47,16 +45,12 @@ class WPCategory: WPObject {
     init?(dict: NSDictionary) {
         guard let dictID            = dict["ID"] as? Int,
             dictTitle               = dict["title"] as? String,
-            dictSubtitle            = dict["subtitle"] as? String,
-            dictTagline             = dict["tagline"] as? String,
-            dictParent              = dict["parent"] as? Int,
+            dictDescription         = dict["description"] as? String,
             dictSize                = dict["size"] as? Int,
             dictFeaturedImageURL    = dict["featuredImageURL"] as? String else {
                 ID = 0
                 title = ""
-                subtitle = ""
-                tagline = NSAttributedString(string: "")
-                parentID = 0
+                description = ""
                 size = 0
                 featuredImageURL = NSURL()
                 return nil
@@ -64,9 +58,7 @@ class WPCategory: WPObject {
         
         ID = dictID
         title = dictTitle
-        subtitle = dictSubtitle
-        tagline = dictTagline.attributedString ?? NSAttributedString(string: "")
-        parentID = dictParent != 0 ? dictParent : nil
+        description = dictDescription
         size = dictSize
         
         if let asURL = NSURL(string: dictFeaturedImageURL) {
@@ -75,7 +67,6 @@ class WPCategory: WPObject {
             featuredImageURL = NSURL()
             return nil
         }
-        
         
         // Begin fetching the featuredImage.
         featuredImage { _ in }

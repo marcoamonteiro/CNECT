@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WPPost {
+class WPPost: WPObject {
     let ID: Int
     let title: String
     let excerpt: String

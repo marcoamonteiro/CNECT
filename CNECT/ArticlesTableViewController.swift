@@ -51,16 +51,6 @@ class ArticlesTableViewController: UITableViewController {
         return posts.isEmpty ? 0 : 1
     }
     
-    // A small margin at the top.
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 8
-    }
-    
-    // No margin at the bottom (built in to cells).
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
@@ -85,7 +75,7 @@ class ArticlesTableViewController: UITableViewController {
         articleCell.categoryLabel?.text = category?.title
         articleCell.titleLabel?.text = post.title
         articleCell.featuredImageView?.image = nil
-        // articleCell.excerptLabel?.text = post.excerpt
+        articleCell.excerptLabel?.text = post.excerpt.plainString
         
         post.featuredImage { image in
             articleCell.featuredImageView?.image = image
