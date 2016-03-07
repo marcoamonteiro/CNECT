@@ -87,7 +87,7 @@ class ArticlesController: UITableViewController {
         articleCell.excerptLabel?.text = post.excerpt.plainString
         
         post.featuredImage { image in
-            articleCell.fadeInFeaturedImage(image)
+            articleCell.featuredImageView?.image = image
         }
         
         articleCell.adjustConstraintsForSelected(cell.selected)
@@ -154,18 +154,16 @@ class ArticlesController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "ArticleSegue" {
-            let articleController = segue.destinationViewController as! ArticleController
-            
-            if let cell = sender as? ArticleTableViewCell {
-                if let indexPath = tableView.indexPathForCell(cell) {
+            if let articleController = segue.destinationViewController as? ArticleController,
+                button = sender as? UIButton,
+                cell = button.superview?.superview?.superview as? ArticleTableViewCell,
+                indexPath = tableView.indexPathForCell(cell) {
                     articleController.articleTitle = posts[indexPath.row].title
                     articleController.articleAuthor = posts[indexPath.row].authorName
                     articleController.articleFeaturedImageURL = posts[indexPath.row].featuredImageURL
                     articleController.articleContent = posts[indexPath.row].content
-                }
             }
         }
     }
-
 
 }

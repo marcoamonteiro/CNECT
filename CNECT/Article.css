@@ -7,16 +7,20 @@ body {
     width: 100%;
 }
 
+#cnect-app-article-category {
+    margin: 15px 15px 0;
+    font: -apple-system-headline;
+}
+
 #cnect-app-article-title {
-    margin: 16px 20px 2px;
-    font-weight: 300;
+    margin: 0 15px 15px;
+    font: -apple-system-title1;
 }
 
 #cnect-app-article-author {
-    margin: 0 20px 32px;
+    margin: 0 15px 30px;
     color: #056cbb;
-    font-weight: 900;
-    font-size: 16px;
+    font: -apple-system-subheadline;
 }
 
 #cnect-app-article-author .by {
@@ -24,9 +28,9 @@ body {
 }
 
 #cnect-app-article-content {
-    margin: 0 20px 40px;
-    text-align: justify;
+    margin: 0 15px 30px;
     line-height: 1.5em;
+    font: -apple-system-body
 }
 
 body, p, a, h1, h2 {

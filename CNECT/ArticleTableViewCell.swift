@@ -29,8 +29,6 @@ class ArticleTableViewCell: UITableViewCell {
         // Add slight drop shadows to labels for readability (subtle).
         titleLabel?.addDropShadow()
         categoryLabel?.addDropShadow()
-        
-        featuredImageView?.alpha = 0
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -83,9 +81,9 @@ class ArticleTableViewCell: UITableViewCell {
             }
         } else {
             if highlighted {
-                darkenView?.alpha = 0.6
+                darkenView?.alpha = 0.4
             } else {
-                darkenView?.alpha = 0.7
+                darkenView?.alpha = 0.5
             }
         }
     }
@@ -105,15 +103,6 @@ class ArticleTableViewCell: UITableViewCell {
             // Engage constraints to homogonize height.
             self.fixedFromTop?.active = false
             self.titleVerticallyCentered?.active = true
-        }
-    }
-    
-    func fadeInFeaturedImage(image: UIImage?) {
-        featuredImageView?.image = image
-        featuredImageView?.alpha = 0
-        
-        UIView.animateWithDuration(0.1) {
-            self.featuredImageView?.alpha = 0.6
         }
     }
 

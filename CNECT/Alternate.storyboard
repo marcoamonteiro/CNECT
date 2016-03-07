@@ -145,19 +145,19 @@
                                                     <rect key="frame" x="15" y="15" width="570" height="52"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dr-K7-sKJ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="570" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="570" height="19.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QPF-FH-Sht">
-                                                            <rect key="frame" x="0.0" y="20" width="570" height="33"/>
+                                                            <rect key="frame" x="0.0" y="19.5" width="570" height="32.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-G9-tRl">
-                                                    <rect key="frame" x="15" y="82" width="570" height="79.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-G9-tRl">
+                                                    <rect key="frame" x="15" y="82" width="570" height="61.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="uLJ-Z9-UPK"/>
                                                     </constraints>
@@ -178,7 +178,7 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <state key="normal" title="Read the Full Article"/>
                                                     <connections>
-                                                        <segue destination="5tV-hq-aOc" kind="show" id="nRv-WC-Dad"/>
+                                                        <segue destination="5tV-hq-aOc" kind="show" identifier="ArticleSegue" id="nRv-WC-Dad"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -248,10 +248,10 @@
             </objects>
             <point key="canvasLocation" x="817" y="-117"/>
         </scene>
-        <!--View Controller-->
+        <!--Article Controller-->
         <scene sceneID="1eb-vJ-q7h">
             <objects>
-                <viewController id="5tV-hq-aOc" sceneMemberID="viewController">
+                <viewController id="5tV-hq-aOc" customClass="ArticleController" customModule="CNECT" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JsX-II-7e2"/>
                         <viewControllerLayoutGuide type="bottom" id="Cvn-mx-qHT"/>
@@ -259,8 +259,23 @@
                     <view key="view" contentMode="scaleToFill" id="n9j-fU-1zX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lqh-Tn-wU0">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Lqh-Tn-wU0" secondAttribute="trailing" id="HtF-NW-yEt"/>
+                            <constraint firstItem="Cvn-mx-qHT" firstAttribute="top" secondItem="Lqh-Tn-wU0" secondAttribute="bottom" id="TIm-SJ-oNE"/>
+                            <constraint firstItem="Lqh-Tn-wU0" firstAttribute="top" secondItem="n9j-fU-1zX" secondAttribute="top" id="qNO-5l-xoj"/>
+                            <constraint firstItem="Lqh-Tn-wU0" firstAttribute="leading" secondItem="n9j-fU-1zX" secondAttribute="leading" id="vvq-Sh-bNT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="Lqh-Tn-wU0" id="uiI-Ko-Zuo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tsq-Rb-viA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

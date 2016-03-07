@@ -15,7 +15,6 @@ class WPPost: WPObject {
     let excerpt: String
     let content: String
     
-    let authorID: Int
     let authorName: String
     let commentsCount: Int
     let categoryID: Int
@@ -65,7 +64,6 @@ class WPPost: WPObject {
             dictExcerpt             = dict["excerpt"] as? String,
             dictContent             = dict["content"] as? String,
             dictFeaturedImageURL    = dict["featuredImageURL"] as? String,
-            dictAuthorID            = dict["authorID"] as? Int,
             dictAuthorName          = dict["authorName"] as? String,
             dictCommentsCount       = dict["commentsCount"] as? Int,
             dictCategoryID          = dict["categoryID"] as? Int else {
@@ -73,7 +71,6 @@ class WPPost: WPObject {
                 title = ""
                 excerpt = ""
                 content = ""
-                authorID = 0
                 authorName = ""
                 featuredImageURL = NSURL()
                 commentsCount = 0
@@ -85,7 +82,6 @@ class WPPost: WPObject {
         
         excerpt = dictExcerpt
         content = dictContent
-        authorID = dictAuthorID
         authorName = dictAuthorName
         
         commentsCount = dictCommentsCount

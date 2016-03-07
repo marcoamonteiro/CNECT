@@ -25,28 +25,6 @@ class ArticleController: UIViewController, UIWebViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        /*
-        let statusBlur = UIBlurEffect(style: .ExtraLight)
-        let statusEffect = UIVisualEffectView(effect: statusBlur)
-        statusEffect.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 20)
-        
-        view.addSubview(statusEffect)*/
-        
-        /*
-        let statusFade = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
-        statusFade.backgroundColor = UIColor.whiteColor()
-        
-        let gradientMask = CAGradientLayer()
-        gradientMask.frame = statusFade.bounds
-        
-        gradientMask.colors = [UIColor.whiteColor().CGColor, UIColor.clearColor().CGColor]
-        gradientMask.startPoint = CGPoint(x: 0.0, y: 0.25)
-        gradientMask.endPoint = CGPoint(x: 0.0, y: 1.0)
-        
-        statusFade.layer.mask = gradientMask
-        view.addSubview(statusFade)
-*/
-        
         formatHTML()
         contentView.loadHTMLString(articleContent, baseURL: nil)
     }
@@ -68,7 +46,7 @@ class ArticleController: UIViewController, UIWebViewDelegate {
             }
         }
 
-        articleContent = "<h1 id='cnect-app-article-title'>\(articleTitle)</h1><h2 id='cnect-app-article-author'><span class='by'>By</span> \(articleAuthor)</h2>" + articleContent
+        articleContent = "<h2 id='cnect-app-article-category'>News</h2><h1 id='cnect-app-article-title'>\(articleTitle)</h1><h3 id='cnect-app-article-author'><span class='by'>By</span> \(articleAuthor)</h3>" + articleContent
         if let imageURL = articleFeaturedImageURL {
             articleContent = "<img id='cnect-app-featured-image' src='\(imageURL.absoluteString)' />" + articleContent
         }
