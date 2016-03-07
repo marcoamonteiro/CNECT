@@ -13,6 +13,7 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var featuredImageView: UIImageView?
     @IBOutlet weak var titleLabel: UILabel?
     
+    @IBOutlet weak var blurView: UIVisualEffectView?
     @IBOutlet weak var darkenView: UIView?
     
     override func awakeFromNib() {

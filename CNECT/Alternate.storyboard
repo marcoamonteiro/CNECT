@@ -82,6 +82,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="blurView" destination="jOv-6W-tdf" id="NTv-Ob-2Wf"/>
                                     <outlet property="darkenView" destination="g5h-pp-IUS" id="qkm-Wr-zQY"/>
                                     <outlet property="featuredImageView" destination="LNG-Qg-8YV" id="di9-CK-WKc"/>
                                     <outlet property="titleLabel" destination="EEO-r0-smY" id="cb6-2D-7eC"/>

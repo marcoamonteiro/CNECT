@@ -37,4 +37,13 @@ extension UIView {
     }
     */
     
+    var snapshot: UIImage? {
+        UIGraphicsBeginImageContext(frame.size)
+        drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+    
+        return image
+    }
+    
 }

@@ -24,6 +24,8 @@ class ArticlesController: UITableViewController {
         
         let postSubset = WPPostSubset(categoryID: category?.ID, tagID: nil)
         
+        let start = CACurrentMediaTime()
+        
         cnect.posts(inSubset: postSubset) { posts in
             // Check for posts? (nil means error).
             if let posts = posts {
@@ -32,9 +34,16 @@ class ArticlesController: UITableViewController {
                 self.posts.appendContentsOf(posts)
                 self.tableView.reloadData()
                 
+                let delta = CACurrentMediaTime() - start
+                let remaining = 1 - Double.init(_builtinFloatLiteral: delta.value)
+                
+                if remaining > 0 {
+                    usleep(UInt32(remaining * 1000000.0))
+                }
+                
                 // Fade in the table.
                 UIView.animateWithDuration(0.5, animations: {
-                    indicator.alpha = 0.0
+                    indicator.alpha = 0
                 }, completion: { _ in
                     indicator.removeFromSuperview()
                 })
