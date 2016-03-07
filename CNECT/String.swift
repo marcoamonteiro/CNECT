@@ -3,10 +3,11 @@
 //  CNECT
 //
 //  Created by Tobin Bell on 2/27/16.
-//  Copyright © 2016 Marco Monteiro. All rights reserved.
+//  Copyright © 2016 Tobin Bell. All rights reserved.
 //
 
 import Foundation
+import UIKit
 
 extension String {
     

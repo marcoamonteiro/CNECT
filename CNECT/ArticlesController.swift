@@ -1,14 +1,14 @@
 //
-//  ArticlesTableViewController.swift
+//  ArticlesController.swift
 //  SidebarMenu
 //
-//  Created by Marco Monteiro on 2/13/16.
-//  Copyright © 2016 AppCoda. All rights reserved.
+//  Created by Tobin Bell on 2/13/16.
+//  Copyright © 2016 Tobin Bell. All rights reserved.
 //
 
 import UIKit
 
-class ArticlesTableViewController: UITableViewController {
+class ArticlesController: UITableViewController {
     
     var posts = [WPPost]()
     let imageQueue = NSOperationQueue()
@@ -22,23 +22,32 @@ class ArticlesTableViewController: UITableViewController {
         
         let indicator = addActivityIndicatorView()
         
-        cnect.posts(inCategoryID: category?.ID) { posts in
+        let postSubset = WPPostSubset(categoryID: category?.ID, tagID: nil)
+        
+        cnect.posts(inSubset: postSubset) { posts in
+            // Check for posts? (nil means error).
             if let posts = posts {
+                
                 // Reload the table view
-                indicator.removeFromSuperview()
                 self.posts.appendContentsOf(posts)
                 self.tableView.reloadData()
+                
+                // Fade in the table.
+                UIView.animateWithDuration(0.5, animations: {
+                    indicator.alpha = 0.0
+                }, completion: { _ in
+                    indicator.removeFromSuperview()
+                })
+                
+            } else {
+                // TODO: Handle error.
             }
         }
         
         // Navigation item
         navigationItem.title = category?.title ?? "Top Stories"
         
-        // Auto Layout cell height
-        //tableView.rowHeight = UITableViewAutomaticDimension
-        //tableView.estimatedRowHeight = 150
-        
-        // Add a custom back button to get back to Sections
+        // Add a custom back button to get back to MenuController
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "MenuButton"), style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
         
         // After coming back from an article, the highlight should still be there.
@@ -48,7 +57,7 @@ class ArticlesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return posts.isEmpty ? 0 : 1
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,7 +79,7 @@ class ArticlesTableViewController: UITableViewController {
         }
         
         let post = posts[index]
-        let category = cnect.categoryWithID(post.categoryID)
+        let category = cnect.category(withID: post.categoryID)
         
         articleCell.categoryLabel?.text = category?.title
         articleCell.titleLabel?.text = post.title
@@ -78,7 +87,7 @@ class ArticlesTableViewController: UITableViewController {
         articleCell.excerptLabel?.text = post.excerpt.plainString
         
         post.featuredImage { image in
-            articleCell.featuredImageView?.image = image
+            articleCell.fadeInFeaturedImage(image)
         }
         
         articleCell.adjustConstraintsForSelected(cell.selected)

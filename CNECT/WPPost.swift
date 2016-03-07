@@ -9,23 +9,36 @@
 import UIKit
 
 class WPPost: WPObject {
+    
     let ID: Int
     let title: String
     let excerpt: String
     let content: String
+    
+    let authorID: Int
+    let authorName: String
+    let commentsCount: Int
+    let categoryID: Int
     
     let featuredImageURL: NSURL
     private let featuredImageQueue = NSOperationQueue()
     private var featuredImageCache: UIImage?
     private var featuredImageFetched = false
     
-    func featuredImage(completionBlock: (UIImage?) -> Void) {
+    func featuredImage(completionHandler: (UIImage?) -> Void) {
+        
+        // Perform callbacks on the main thread to allow for UI updates.
+        let complete = { image in
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                completionHandler(image)
+            }
+        }
+        
+        featuredImageQueue.qualityOfService = .UserInitiated
         featuredImageQueue.addOperationWithBlock {
             // If we have already fetched this image, simply return the cache.
             if self.featuredImageFetched {
-                NSOperationQueue.mainQueue().addOperationWithBlock {
-                    completionBlock(self.featuredImageCache)
-                }
+                complete(self.featuredImageCache)
             }
             
             // Otherwise, go fetch it.
@@ -33,25 +46,19 @@ class WPPost: WPObject {
                 self.featuredImageFetched = true
                 if let image = UIImage(data: data) {
                     self.featuredImageCache = image
-                    NSOperationQueue.mainQueue().addOperationWithBlock {
-                        completionBlock(self.featuredImageCache)
-                    }
+                    complete(self.featuredImageCache)
                 }
             }
         }
     }
-    
-    let authorID: Int
-    let authorName: String
-    let commentsCount: Int
-    let categoryID: Int
     
     /**
      * Construct a new WPPost object from an NSDictionary of data
      *
      * - parameter dict: An NSDictionary object containing the following fields: 'ID' (Int), 'post_author' (Int), 'post_title' (String), 'post_content' (String), 'post_author_name' (String), 'featured_image_URL' (String).
      */
-    init?(dict: NSDictionary) {
+    required init?(dict: NSDictionary) {
+        featuredImageQueue.maxConcurrentOperationCount = 1
         
         guard let dictID            = dict["ID"] as? Int,
             dictTitle               = dict["title"] as? String,

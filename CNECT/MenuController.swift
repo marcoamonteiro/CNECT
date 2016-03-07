@@ -3,7 +3,7 @@
 //  CNECT
 //
 //  Created by Tobin Bell on 2/27/16.
-//  Copyright © 2016 Marco Monteiro. All rights reserved.
+//  Copyright © 2016 Tobin Bell. All rights reserved.
 //
 
 import UIKit
@@ -34,7 +34,7 @@ class MenuController: UITableViewController {
         navigationController?.navigationBar.borderView?.hidden = true
         
         // Switch to top stories by default.
-        if let topStories = storyboard?.instantiateViewControllerWithIdentifier("ArticlesTableViewController") as? ArticlesTableViewController {
+        if let topStories = storyboard?.instantiateViewControllerWithIdentifier("ArticlesTableViewController") as? ArticlesController {
             topStories.category = nil
             navigationController?.pushViewController(topStories, animated: false)
         }
@@ -46,12 +46,12 @@ class MenuController: UITableViewController {
         return 1
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 18))
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Sections"
+        }
         
-        view.backgroundColor = UIColor.whiteColor()
-        
-        return view
+        return nil
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,7 +128,7 @@ class MenuController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "SectionArticlesSegue",
-            let articlesController = segue.destinationViewController as? ArticlesTableViewController,
+            let articlesController = segue.destinationViewController as? ArticlesController,
             senderCell = sender as? UITableViewCell,
             indexPath = tableView.indexPathForCell(senderCell) {
                 

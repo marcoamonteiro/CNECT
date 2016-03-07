@@ -18,7 +18,6 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var darkenView: UIView?
     @IBOutlet weak var blurView: UIVisualEffectView?
     
-    
     @IBOutlet weak var topMargin: NSLayoutConstraint?
     @IBOutlet weak var bottomMargin: NSLayoutConstraint?
     @IBOutlet weak var fixedFromTop: NSLayoutConstraint?
@@ -27,9 +26,11 @@ class ArticleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // Add drop shadows to labels for readability.
+        // Add slight drop shadows to labels for readability (subtle).
         titleLabel?.addDropShadow()
         categoryLabel?.addDropShadow()
+        
+        featuredImageView?.alpha = 0
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -44,7 +45,7 @@ class ArticleTableViewCell: UITableViewCell {
             categoryLabel?.addDropShadow()
         }
         
-        UIView.animateWithDuration(0.25) {
+        UIView.animateWithDuration(0.3) {
             // Switch between darken filter and blur effect.
             if selected {
                 self.featuredImageView?.alpha = 1.0
@@ -57,7 +58,7 @@ class ArticleTableViewCell: UITableViewCell {
             } else {
                 self.featuredImageView?.alpha = 0.6
                 self.blurView?.alpha = 0
-                self.darkenView?.alpha = 0.7
+                self.darkenView?.alpha = 0.5
                 self.excerptLabel?.alpha = 0
                 
                 self.titleLabel?.textColor = UIColor.whiteColor()
@@ -104,6 +105,15 @@ class ArticleTableViewCell: UITableViewCell {
             // Engage constraints to homogonize height.
             self.fixedFromTop?.active = false
             self.titleVerticallyCentered?.active = true
+        }
+    }
+    
+    func fadeInFeaturedImage(image: UIImage?) {
+        featuredImageView?.image = image
+        featuredImageView?.alpha = 0
+        
+        UIView.animateWithDuration(0.1) {
+            self.featuredImageView?.alpha = 0.6
         }
     }
 

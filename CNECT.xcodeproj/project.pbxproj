@@ -15,7 +15,6 @@
 		0286FC021C87A015000AE992 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286FC011C87A015000AE992 /* UIView.swift */; };
 		0286FC041C87CCB5000AE992 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286FC031C87CCB5000AE992 /* UINavigationBar.swift */; };
 		02E61FBA1C88F1C700482503 /* UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E61FB91C88F1C700482503 /* UITableViewController.swift */; };
-		02E61FBF1C896C1100482503 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E61FBE1C896C1100482503 /* UIImageEffects.swift */; };
 		02E61FC51C8A602D00482503 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E61FC41C8A602D00482503 /* MenuController.swift */; };
 		02E61FC71C8A606200482503 /* WPTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E61FC61C8A606200482503 /* WPTag.swift */; };
 		02E61FC91C8A636F00482503 /* WPCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E61FC81C8A636F00482503 /* WPCache.swift */; };
@@ -28,10 +27,9 @@
 		A9D6F9C51C8198FF00ADDD89 /* WPPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9C21C8198FF00ADDD89 /* WPPost.swift */; };
 		A9D6F9C61C8198FF00ADDD89 /* WPCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9C31C8198FF00ADDD89 /* WPCategory.swift */; };
 		A9D6F9C71C8198FF00ADDD89 /* WP.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9C41C8198FF00ADDD89 /* WP.swift */; };
-		A9D6F9CC1C81996400ADDD89 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9CA1C81996400ADDD89 /* SWRevealViewController.m */; };
 		A9D6F9D41C81999200ADDD89 /* ArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9CE1C81999200ADDD89 /* ArticleController.swift */; };
 		A9D6F9D51C81999200ADDD89 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9CF1C81999200ADDD89 /* ArticleTableViewCell.swift */; };
-		A9D6F9D71C81999200ADDD89 /* ArticlesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9D11C81999200ADDD89 /* ArticlesTableViewController.swift */; };
+		A9D6F9D71C81999200ADDD89 /* ArticlesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D6F9D11C81999200ADDD89 /* ArticlesController.swift */; };
 		A9D6F9E81C81B58400ADDD89 /* Article.css in Resources */ = {isa = PBXBuildFile; fileRef = A9D6F9E71C81B58400ADDD89 /* Article.css */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +42,6 @@
 		0286FC011C87A015000AE992 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		0286FC031C87CCB5000AE992 /* UINavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		02E61FB91C88F1C700482503 /* UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewController.swift; sourceTree = "<group>"; };
-		02E61FBE1C896C1100482503 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
 		02E61FC41C8A602D00482503 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		02E61FC61C8A606200482503 /* WPTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPTag.swift; sourceTree = "<group>"; };
 		02E61FC81C8A636F00482503 /* WPCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPCache.swift; sourceTree = "<group>"; };
@@ -59,12 +56,9 @@
 		A9D6F9C21C8198FF00ADDD89 /* WPPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPPost.swift; sourceTree = "<group>"; };
 		A9D6F9C31C8198FF00ADDD89 /* WPCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WPCategory.swift; sourceTree = "<group>"; };
 		A9D6F9C41C8198FF00ADDD89 /* WP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WP.swift; sourceTree = "<group>"; };
-		A9D6F9C91C81996400ADDD89 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		A9D6F9CA1C81996400ADDD89 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		A9D6F9CB1C81996400ADDD89 /* SidebarMenu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SidebarMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		A9D6F9CE1C81999200ADDD89 /* ArticleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleController.swift; sourceTree = "<group>"; };
 		A9D6F9CF1C81999200ADDD89 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
-		A9D6F9D11C81999200ADDD89 /* ArticlesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesTableViewController.swift; sourceTree = "<group>"; };
+		A9D6F9D11C81999200ADDD89 /* ArticlesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesController.swift; sourceTree = "<group>"; };
 		A9D6F9E71C81B58400ADDD89 /* Article.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Article.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,7 +82,6 @@
 				0286FC011C87A015000AE992 /* UIView.swift */,
 				0286FC031C87CCB5000AE992 /* UINavigationBar.swift */,
 				02E61FB91C88F1C700482503 /* UITableViewController.swift */,
-				02E61FBE1C896C1100482503 /* UIImageEffects.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -97,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				02E61FC41C8A602D00482503 /* MenuController.swift */,
-				A9D6F9D11C81999200ADDD89 /* ArticlesTableViewController.swift */,
+				A9D6F9D11C81999200ADDD89 /* ArticlesController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -140,7 +133,6 @@
 				A9D6F9C81C81990600ADDD89 /* WP API */,
 				A9D6F9B51C81983E00ADDD89 /* Assets.xcassets */,
 				A9D6F9CE1C81999200ADDD89 /* ArticleController.swift */,
-				A9D6F9CD1C81996E00ADDD89 /* SidebarMenu */,
 				A9D6F9B71C81983E00ADDD89 /* LaunchScreen.storyboard */,
 				A9D6F9C01C8198AC00ADDD89 /* Main.storyboard */,
 				A9D6F9BA1C81983E00ADDD89 /* Info.plist */,
@@ -160,16 +152,6 @@
 				02E61FCC1C8ACCBA00482503 /* WPPostSubset.swift */,
 			);
 			name = "WP API";
-			sourceTree = "<group>";
-		};
-		A9D6F9CD1C81996E00ADDD89 /* SidebarMenu */ = {
-			isa = PBXGroup;
-			children = (
-				A9D6F9C91C81996400ADDD89 /* SWRevealViewController.h */,
-				A9D6F9CA1C81996400ADDD89 /* SWRevealViewController.m */,
-				A9D6F9CB1C81996400ADDD89 /* SidebarMenu-Bridging-Header.h */,
-			);
-			name = SidebarMenu;
 			sourceTree = "<group>";
 		};
 		A9D6F9E61C81B56D00ADDD89 /* Resources */ = {
@@ -212,7 +194,6 @@
 				TargetAttributes = {
 					A9D6F9AA1C81983E00ADDD89 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = M93X94K5J3;
 					};
 				};
 			};
@@ -255,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02E61FBA1C88F1C700482503 /* UITableViewController.swift in Sources */,
-				A9D6F9D71C81999200ADDD89 /* ArticlesTableViewController.swift in Sources */,
+				A9D6F9D71C81999200ADDD89 /* ArticlesController.swift in Sources */,
 				A9D6F9C61C8198FF00ADDD89 /* WPCategory.swift in Sources */,
 				A9D6F9C51C8198FF00ADDD89 /* WPPost.swift in Sources */,
 				02E61FCD1C8ACCBA00482503 /* WPPostSubset.swift in Sources */,
@@ -266,8 +247,6 @@
 				A9D6F9AF1C81983E00ADDD89 /* AppDelegate.swift in Sources */,
 				02647E5C1C826D29000CA7F9 /* String.swift in Sources */,
 				02E61FCB1C8A63A400482503 /* WPObject.swift in Sources */,
-				A9D6F9CC1C81996400ADDD89 /* SWRevealViewController.m in Sources */,
-				02E61FBF1C896C1100482503 /* UIImageEffects.swift in Sources */,
 				0286FC021C87A015000AE992 /* UIView.swift in Sources */,
 				02E61FC91C8A636F00482503 /* WPCache.swift in Sources */,
 				02E61FC51C8A602D00482503 /* MenuController.swift in Sources */,
@@ -382,7 +361,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bases.CNECT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/SidebarMenu-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -396,7 +375,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bases.CNECT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SWIFT_MODULE_NAME)/SidebarMenu-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

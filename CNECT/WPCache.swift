@@ -3,32 +3,44 @@
 //  CNECT
 //
 //  Created by Tobin Bell on 3/4/16.
-//  Copyright © 2016 Marco Monteiro. All rights reserved.
+//  Copyright © 2016 Tobin Bell. All rights reserved.
 //
-
-import Foundation
 
 class WPCache {
     
     // Category caching
-    private var fetchedCategories = false
-    var categories = [WPCategory]()
+    var categories: [WPCategory]?
+    var hasCategories: Bool {
+        return categories != nil
+    }
     
     // Tag caching.
-    private var fetchedTags = false
-    var tags = [WPTag]()
-    
-    func insertCategories(categories: [WPCategory]) {
-        self.categories.appendContentsOf(categories)
-        fetchedCategories = true
+    var tags: [WPTag]?
+    var hasTags: Bool {
+        return tags != nil
     }
     
-    func insertTags(tags: [WPTag]) {
-        self.tags.appendContentsOf(tags)
-        fetchedTags = true
+    // Post caching.
+    // Posts are stored as dictionaries for a certain subset, such as all posts, or posts within a certain category.
+    private var posts = [WPPostSubset: [WPPost]]()
+    
+    func insert(categories: [WPCategory]) {
+        uniquelyInsert(categories, into: &self.categories)
     }
     
-    func category(byID categoryID: Int) -> WPCategory? {
+    func insert(tags: [WPTag]) {
+        uniquelyInsert(tags, into: &self.tags)
+    }
+    
+    func insert(posts: [WPPost], forSubset subset: WPPostSubset) {
+        uniquelyInsert(posts, into: &self.posts[subset])
+    }
+    
+    func category(withID categoryID: Int) -> WPCategory? {
+        guard let categories = categories else {
+            return nil
+        }
+        
         // Linear search because there won't ever be more than a handful of categories.
         for category in categories {
             if category.ID == categoryID { return category }
@@ -37,13 +49,37 @@ class WPCache {
         return nil
     }
     
-    func tag(byID tagID: Int) -> WPTag? {
+    func tag(withID tagID: Int) -> WPTag? {
+        guard let tags = tags else {
+            return nil
+        }
+        
         // Linear search because there won't ever be more than a handful of tags.
         for tag in tags {
             if tag.ID == tagID { return tag }
         }
         
         return nil
+    }
+    
+    func posts(inSubset subset: WPPostSubset) -> [WPPost]? {
+        return self.posts[subset]
+    }
+    
+    private func uniquelyInsert<Element: WPObject>(objects: [Element], inout into container: [Element]?) {
+        if container == nil {
+            container = objects
+            return
+        }
+        
+        // Do not insert anything with an existing ID.
+        for object in objects {
+            if container!.contains({ element in object.ID == element.ID }) {
+                continue
+            }
+            
+            container!.append(object)
+        }
     }
     
 }
