@@ -56,7 +56,7 @@ class ArticleTableViewCell: UITableViewCell {
             } else {
                 self.featuredImageView?.alpha = 0.6
                 self.blurView?.alpha = 0
-                self.darkenView?.alpha = 0.5
+                self.darkenView?.alpha = 0.6
                 self.excerptLabel?.alpha = 0
                 
                 self.titleLabel?.textColor = UIColor.whiteColor()
@@ -81,9 +81,9 @@ class ArticleTableViewCell: UITableViewCell {
             }
         } else {
             if highlighted {
-                darkenView?.alpha = 0.4
-            } else {
                 darkenView?.alpha = 0.5
+            } else {
+                darkenView?.alpha = 0.6
             }
         }
     }

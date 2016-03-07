@@ -138,7 +138,7 @@
                                                     </view>
                                                     <blurEffect style="extraLight"/>
                                                 </visualEffectView>
-                                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNF-AA-7fL">
+                                                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNF-AA-7fL">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="392"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
