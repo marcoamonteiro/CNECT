@@ -3,7 +3,7 @@
 //  SidebarMenu
 //
 //  Created by Marco Monteiro on 2/26/16.
-//  Copyright © 2016 AppCoda. All rights reserved.
+//  Copyright © 2016 Marco Monteiro. All rights reserved.
 //
 
 import UIKit
@@ -18,7 +18,6 @@ class ArticleController: UIViewController, UIWebViewDelegate {
     var articleTitle = ""
     var articleAuthor = ""
     var articleContent = "<b>test</b>"
-    var articleFeaturedImageURL: NSURL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +46,6 @@ class ArticleController: UIViewController, UIWebViewDelegate {
         }
 
         articleContent = "<h2 id='cnect-app-article-category'>News</h2><h1 id='cnect-app-article-title'>\(articleTitle)</h1><h3 id='cnect-app-article-author'><span class='by'>By</span> \(articleAuthor)</h3>" + articleContent
-        if let imageURL = articleFeaturedImageURL {
-            articleContent = "<img id='cnect-app-featured-image' src='\(imageURL.absoluteString)' />" + articleContent
-        }
         
         if let articleCSS = ArticleController.articleCSS {
             articleContent = "<style type=\"text/css\">\(articleCSS)</style>" + articleContent

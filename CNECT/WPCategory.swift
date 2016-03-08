@@ -13,7 +13,7 @@ class WPCategory: WPObject {
     let ID: Int
     let title: String
     let subtitle: String
-    let tagline: NSAttributedString
+    let tagline: String
     let parentID: Int?
     let size: Int
     
@@ -62,7 +62,7 @@ class WPCategory: WPObject {
                 ID = 0
                 title = ""
                 subtitle = ""
-                tagline = NSAttributedString(string: "")
+                tagline = ""
                 parentID = 0
                 size = 0
                 featuredImageURL = NSURL()
@@ -72,7 +72,7 @@ class WPCategory: WPObject {
         ID = dictID
         title = dictTitle
         subtitle = dictSubtitle
-        tagline = dictTagline.attributedString ?? NSAttributedString(string: "")
+        tagline = dictTagline.plainString ?? dictTagline
         parentID = dictParent != 0 ? dictParent : nil
         size = dictSize
         

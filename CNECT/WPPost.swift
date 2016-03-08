@@ -2,8 +2,8 @@
 //  WPPost.swift
 //  cnect
 //
-//  Created by Marco Monteiro on 2/25/16.
-//  Copyright © 2016 Marco Monteiro. All rights reserved.
+//  Created by Tobin Bell on 2/25/16.
+//  Copyright © 2016 Tobin Bell. All rights reserved.
 //
 
 import UIKit

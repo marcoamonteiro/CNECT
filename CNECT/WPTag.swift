@@ -12,7 +12,8 @@ import UIKit
 class WPTag: WPObject {
     let ID: Int
     let title: String
-    let description: String
+    let subtitle: String
+    let tagline: String
     let size: Int
     
     let featuredImageURL: NSURL
@@ -52,12 +53,14 @@ class WPTag: WPObject {
         
         guard let dictID            = dict["ID"] as? Int,
             dictTitle               = dict["title"] as? String,
-            dictDescription         = dict["description"] as? String,
+            dictSubtitle            = dict["subtitle"] as? String,
+            dictTagline             = dict["tagline"] as? String,
             dictSize                = dict["size"] as? Int,
             dictFeaturedImageURL    = dict["featuredImageURL"] as? String else {
                 ID = 0
                 title = ""
-                description = ""
+                subtitle = ""
+                tagline = ""
                 size = 0
                 featuredImageURL = NSURL()
                 return nil
@@ -65,14 +68,14 @@ class WPTag: WPObject {
         
         ID = dictID
         title = dictTitle
-        description = dictDescription
+        subtitle = dictSubtitle
+        tagline = dictTagline.plainString ?? dictTagline
         size = dictSize
         
         if let asURL = NSURL(string: dictFeaturedImageURL) {
             featuredImageURL = asURL
         } else {
             featuredImageURL = NSURL()
-            return nil
         }
         
         // Begin fetching the featuredImage.

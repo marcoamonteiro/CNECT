@@ -1,19 +1,18 @@
 //
-//  CategoryTableViewCell.swift
+//  CategoryCell.swift
 //  CNECT
 //
 //  Created by Tobin Bell on 2/27/16.
-//  Copyright © 2016 Marco Monteiro. All rights reserved.
+//  Copyright © 2016 Tobin Bell. All rights reserved.
 //
 
 import UIKit
 
-class CategoryTableViewCell: UITableViewCell {
+class CategoryCell: UITableViewCell {
     
     @IBOutlet weak var featuredImageView: UIImageView?
     @IBOutlet weak var titleLabel: UILabel?
     
-    @IBOutlet weak var blurView: UIVisualEffectView?
     @IBOutlet weak var darkenView: UIView?
     
     override func awakeFromNib() {

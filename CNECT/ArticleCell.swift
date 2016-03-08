@@ -1,14 +1,14 @@
 //
-//  ArticleTableViewCell.swift
+//  ArticleCell.swift
 //  SidebarMenu
 //
-//  Created by Marco Monteiro on 2/13/16.
-//  Copyright © 2016 AppCoda. All rights reserved.
+//  Created by Tobin Bell on 2/13/16.
+//  Copyright © 2016 Tobin Bell. All rights reserved.
 //
 
 import UIKit
 
-class ArticleTableViewCell: UITableViewCell {
+class ArticleCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var categoryLabel: UILabel?

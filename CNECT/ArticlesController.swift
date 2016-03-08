@@ -13,7 +13,7 @@ class ArticlesController: UITableViewController {
     var posts = [WPPost]()
     let imageQueue = NSOperationQueue()
     
-    var category: WPCategory?
+    var postSubset = WPPostSubset.All
     
     var selectedRow: Int?
 
@@ -21,8 +21,7 @@ class ArticlesController: UITableViewController {
         super.viewDidLoad()
         
         let indicator = addActivityIndicatorView()
-        
-        let postSubset = WPPostSubset(categoryID: category?.ID, tagID: nil)
+        tableView.userInteractionEnabled = false
         
         let start = CACurrentMediaTime()
         
@@ -35,7 +34,7 @@ class ArticlesController: UITableViewController {
                 self.tableView.reloadData()
                 
                 let delta = CACurrentMediaTime() - start
-                let remaining = 1 - Double.init(_builtinFloatLiteral: delta.value)
+                let remaining = 0.3 - Double.init(_bits: delta.value)
                 
                 if remaining > 0 {
                     usleep(UInt32(remaining * 1000000.0))
@@ -46,6 +45,7 @@ class ArticlesController: UITableViewController {
                     indicator.alpha = 0
                 }, completion: { _ in
                     indicator.removeFromSuperview()
+                    self.tableView.userInteractionEnabled = true
                 })
                 
             } else {
@@ -54,7 +54,16 @@ class ArticlesController: UITableViewController {
         }
         
         // Navigation item
-        navigationItem.title = category?.title ?? "Top Stories"
+        if let categoryID = postSubset.categoryID {
+            let category = cnect.category(withID: categoryID)
+            navigationItem.title = category?.title
+        } else if let tagID = postSubset.tagID {
+            let tag = cnect.tag(withID: tagID)
+            navigationItem.title = tag?.title
+        } else {
+            navigationItem.title = "Top Stories"
+        }
+        
         
         // Add a custom back button to get back to MenuController
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "MenuButton"), style: .Plain, target: navigationController, action: "popViewControllerAnimated:")
@@ -83,7 +92,7 @@ class ArticlesController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ArticleCell", forIndexPath: indexPath)
         
-        guard let articleCell = cell as? ArticleTableViewCell else {
+        guard let articleCell = cell as? ArticleCell else {
             return cell
         }
         
@@ -165,11 +174,10 @@ class ArticlesController: UITableViewController {
         if segue.identifier == "ArticleSegue" {
             if let articleController = segue.destinationViewController as? ArticleController,
                 button = sender as? UIButton,
-                cell = button.superview?.superview?.superview as? ArticleTableViewCell,
+                cell = button.superview?.superview?.superview as? ArticleCell,
                 indexPath = tableView.indexPathForCell(cell) {
                     articleController.articleTitle = posts[indexPath.row].title
                     articleController.articleAuthor = posts[indexPath.row].authorName
-                    articleController.articleFeaturedImageURL = posts[indexPath.row].featuredImageURL
                     articleController.articleContent = posts[indexPath.row].content
             }
         }
